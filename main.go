@@ -12,7 +12,7 @@ type home struct {
 	region string
 }
 
-func SortByPriceToBig(homes []home) []home {
+func SortByPriceAsc(homes []home) []home {
 	result := make([]home, len(homes))
 	copy(result, homes)
 	sort.Slice(result, func(i, j int) bool {
@@ -21,7 +21,7 @@ func SortByPriceToBig(homes []home) []home {
 	return result
 }
 
-func SortByPriceToSmall(homes []home) []home {
+func SortByPriceDesc(homes []home) []home {
 	result := make([]home, len(homes))
 	copy(result, homes)
 	sort.Slice(result, func(i, j int) bool {
@@ -30,7 +30,7 @@ func SortByPriceToSmall(homes []home) []home {
 	return result
 }
 
-func SortByDistanceFromCenterToFar(homes []home) []home {
+func SortByDistanceFromCenterAsc(homes []home) []home {
 	result := make([]home, len(homes))
 	copy(result, homes)
 	sort.Slice(result, func(i, j int) bool {
@@ -39,7 +39,7 @@ func SortByDistanceFromCenterToFar(homes []home) []home {
 	return result
 }
 
-func SortByDistanceFromCenterFromFar(homes []home) []home {
+func SortByDistanceFromCenterDesc(homes []home) []home {
 	result := make([]home, len(homes))
 	copy(result, homes)
 	sort.Slice(result, func(i, j int) bool {
