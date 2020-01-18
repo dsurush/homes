@@ -38,24 +38,56 @@ func ExampleSortByDistanceFromCenterDesc()  {
 	// Output: [{1 Двухкомнатная квартира 300000 30 Sino} {5 Двухкомнатная квартира 300000 30 Firdavsi} {6 1-комнатная квартира 150000 25 Shohmansur} {2 Двухкомнатная квартира 50000 20 Firdavsi} {3 3-комнатная квартира 35000 10 Sino} {4 4-мнатная квартира 1000000 1 Sino} {7 8-комнатная квартира 3500000 1 Somoni}]
 }
 
-var limPrice int64 = 1_000_000
-func ExampleSearchByMaxPrice()  {
-	result := SearchByMaxPrice(homes, limPrice)
+func ExampleSearchByMaxPrice_HasManyResult()  {
+	result := SearchByMaxPrice(homes, 1_000_000)
 	fmt.Print(result)
 	// Output: [{1 Двухкомнатная квартира 300000 30 Sino} {2 Двухкомнатная квартира 50000 20 Firdavsi} {3 3-комнатная квартира 35000 10 Sino} {4 4-мнатная квартира 1000000 1 Sino} {5 Двухкомнатная квартира 300000 30 Firdavsi} {6 1-комнатная квартира 150000 25 Shohmansur}]
 }
 
-var maxPrice int64 = 1_000_000
-var minPrice int64 = 0
-func ExampleSearchFromXPriceToYPrice()  {
-	result := SearchFromXPriceToYPrice(homes, minPrice, maxPrice)
+func ExampleSearchByMaxPrice_HasOneResult()  {
+	result := SearchByMaxPrice(homes, 35000)
+	fmt.Print(result)
+	// Output: [{3 3-комнатная квартира 35000 10 Sino}]
+}
+
+func ExampleSearchByMaxPrice_HasNotResult()  {
+	result := SearchByMaxPrice(homes, 10)
+	fmt.Print(result)
+	// Output: []
+}
+
+func ExampleSearchFromXPriceToYPrice_HasManyResult()  {
+	result := SearchFromXPriceToYPrice(homes, 0, 1_000_000)
 	fmt.Print(result)
 	// Output: [{1 Двухкомнатная квартира 300000 30 Sino} {2 Двухкомнатная квартира 50000 20 Firdavsi} {3 3-комнатная квартира 35000 10 Sino} {4 4-мнатная квартира 1000000 1 Sino} {5 Двухкомнатная квартира 300000 30 Firdavsi} {6 1-комнатная квартира 150000 25 Shohmansur}]
 }
 
-var regions = []string{"Sino", "Firdavsi"}
-func ExampleSearchByRegion()  {
-	result := SearchByRegion(homes, regions)
+func ExampleSearchFromXPriceToYPrice_HasOneResult()  {
+	result := SearchFromXPriceToYPrice(homes, 36000, 100_000)
+	fmt.Print(result)
+	// Output: [{2 Двухкомнатная квартира 50000 20 Firdavsi}]
+}
+
+func ExampleSearchFromXPriceToYPrice_HasNotResult()  {
+	result := SearchFromXPriceToYPrice(homes, 36000, 49_000)
+	fmt.Print(result)
+	// Output: []
+}
+
+func ExampleSearchByRegion_HasManyResult()  {
+	result := SearchByRegion(homes, []string{"Sino", "Firdavsi"})
 	fmt.Print(result)
 	// Output: [{1 Двухкомнатная квартира 300000 30 Sino} {2 Двухкомнатная квартира 50000 20 Firdavsi} {3 3-комнатная квартира 35000 10 Sino} {4 4-мнатная квартира 1000000 1 Sino} {5 Двухкомнатная квартира 300000 30 Firdavsi}]
+}
+
+func ExampleSearchByRegion_HasOneResult()  {
+	result := SearchByRegion(homes, []string{"Shohmansur"})
+	fmt.Print(result)
+	// Output: [{6 1-комнатная квартира 150000 25 Shohmansur}]
+}
+
+func ExampleSearchByRegion_HasNotResult()  {
+	result := SearchByRegion(homes, []string{"Surush"})
+	fmt.Print(result)
+	// Output: []
 }
